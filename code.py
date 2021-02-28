@@ -1,3 +1,5 @@
+#MOVIE_RECOMMENDATION_PROJECT
+
 import numpy as np    
 import pandas as pd 
 import warnings     
@@ -6,7 +8,7 @@ warnings.filterwarnings('ignore')
 
 df = pd.read_csv('ml-100k/u.data',sep ='\t')
 df.columns =['item_id','user_id','rating','timestamp']  
-df.shape  
+df.shape   
 
 df['user_id'].nunique()                                              
 df['item_id'].nunique() 
@@ -22,15 +24,15 @@ df=pd.merge(df,movie_titles, on='item_id') #merging on the basis of 'item_id'
 
 #Exploratory data analysis 
 import matplotlib.pyplot as plt  
-import seaborn as sns          #statical_library 
+import seaborn as sns          #statiscal_library_of_python
 sns.set_style('white')         
 
 df.groupby('title').mean() 
 df.groupby('title').mean()['rating'].sort_values(ascending = False) 
 df.groupby('title').count()['rating'].sort_values(ascending = False)  
 
-ratings = pd.DataFrame(df.groupby('title').mean()['rating'].sort_values(ascending = False))  
-ratings['number of ratings'] = pd.DataFrame(df.groupby('title').count()['rating'].sort_values(ascending = False))
+ratings = pd.DataFrame(df.groupby('title').mean()['rating'])  
+ratings['number of ratings'] = pd.DataFrame(df.groupby('title').count()['rating'])
 
 ratings.sort_values(by = 'rating',ascending = False)
 plt.figure(figsize=(10,6)) 
@@ -39,7 +41,7 @@ plt.show()
 
 plt.figure(figsize=(10,6))              
 plt.hist(ratings['rating'],bins=70) 
-plt.show() 
+plt.show()  
 
 sns.jointplot(x='rating',y='number of ratings',data=ratings,alpha=0.5)
 
@@ -52,7 +54,7 @@ starwars_user_ratings = moviemat['star wars(1977)']
 
 starwars_user_ratings.head()   
 
-moviemat.corrwith(star_war_user_ratings) 
+similar_to_star_wars = moviemat.corrwith(starwars_user_ratings) 
 pd.DataFrame(similar_to_star_wars , columns=['Correlation'])      
 corr_starwars.head()                                          
 corr_starwars.dropna(inplace = True)           
