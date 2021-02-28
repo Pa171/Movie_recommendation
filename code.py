@@ -24,7 +24,7 @@ df=pd.merge(df,movie_titles, on='item_id') #merging on the basis of 'item_id'
 
 #Exploratory data analysis 
 import matplotlib.pyplot as plt  
-import seaborn as sns          #statiscal_library_of_python
+import seaborn as sns          #statistical_library_of_python
 sns.set_style('white')         
 
 df.groupby('title').mean() 
